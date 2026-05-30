@@ -9,17 +9,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0a0a0a;
-            --surface: #141414;
-            --border: #262626;
-            --text: #e5e5e5;
-            --muted: #a3a3a3;
-            --accent: #3b82f6;
-            --accent-hover: #2563eb;
-            --green: #22c55e;
-            --purple: #a855f7;
-            --orange: #f97316;
-            --pink: #ec4899;
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --surface-2: #f1f5f9;
+            --border: #e2e8f0;
+            --text: #0f172a;
+            --muted: #64748b;
+            --accent: #2563eb;
+            --accent-light: #dbeafe;
+            --green: #16a34a;
+            --green-light: #dcfce7;
+            --purple: #7c3aed;
+            --purple-light: #ede9fe;
+            --orange: #ea580c;
+            --orange-light: #fff7ed;
+            --pink: #db2777;
+            --pink-light: #fce7f3;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,15 +33,14 @@
             font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 10, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             z-index: 100;
@@ -55,13 +59,10 @@
         .logo {
             font-weight: 800;
             font-size: 1.25rem;
-            background: linear-gradient(135deg, var(--accent), var(--purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--accent);
         }
 
         .nav-links { display: flex; gap: 2rem; }
-
         .nav-links a {
             color: var(--muted);
             text-decoration: none;
@@ -69,10 +70,8 @@
             font-weight: 500;
             transition: color 0.2s;
         }
+        .nav-links a:hover { color: var(--accent); }
 
-        .nav-links a:hover { color: var(--text); }
-
-        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -80,48 +79,24 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-content { position: relative; max-width: 800px; }
+        .hero-content { max-width: 800px; }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--surface);
+            padding: 0.5rem 1.25rem;
+            background: white;
             border: 1px solid var(--border);
             border-radius: 100px;
             font-size: 0.85rem;
-            color: var(--muted);
+            color: var(--accent);
+            font-weight: 600;
             margin-bottom: 2rem;
-        }
-
-        .hero-badge .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--green);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .hero h1 {
@@ -129,11 +104,12 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
+            color: var(--text);
         }
 
         .hero h1 .gradient {
-            background: linear-gradient(135deg, var(--accent), var(--purple), var(--pink));
+            background: linear-gradient(135deg, var(--accent), var(--purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -164,36 +140,30 @@
         .btn-primary {
             background: var(--accent);
             color: white;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
         }
-
-        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+        .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }
 
         .btn-secondary {
-            background: var(--surface);
+            background: white;
             color: var(--text);
             border: 1px solid var(--border);
         }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-        .btn-secondary:hover { border-color: var(--muted); }
-
-        /* Sections */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 
         .section-label {
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2rem, 4vw, 2.75rem);
             font-weight: 800;
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
@@ -206,7 +176,6 @@
             margin-bottom: 3rem;
         }
 
-        /* What is AI Agent */
         .explanation {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -218,84 +187,51 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 24px;
-            padding: 3rem;
-            position: relative;
+            padding: 2.5rem;
         }
 
-        .agent-diagram {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
+        .agent-diagram { display: flex; flex-direction: column; gap: 1.25rem; }
 
         .agent-box {
-            background: var(--bg);
+            background: white;
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 1.5rem;
+            padding: 1.25rem;
             transition: all 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
-
-        .agent-box:hover { border-color: var(--accent); transform: translateX(8px); }
+        .agent-box:hover { border-color: var(--accent); transform: translateX(8px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1); }
 
         .agent-box .icon {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
         }
+        .agent-box h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .agent-box p { font-size: 0.85rem; color: var(--muted); }
 
-        .agent-box h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .agent-box p { font-size: 0.875rem; color: var(--muted); }
+        .icon-brain { background: var(--accent-light); }
+        .icon-eye { background: var(--purple-light); }
+        .icon-hand { background: var(--green-light); }
+        .icon-speak { background: var(--orange-light); }
 
-        .icon-brain { background: rgba(59, 130, 246, 0.1); }
-        .icon-eye { background: rgba(168, 85, 247, 0.1); }
-        .icon-hand { background: rgba(34, 197, 94, 0.1); }
-        .icon-speak { background: rgba(249, 115, 22, 0.1); }
-
-        .arrow-down {
-            text-align: center;
-            color: var(--muted);
-            font-size: 1.5rem;
-        }
-
-        .explanation-text h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .explanation-text p {
-            color: var(--muted);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
+        .arrow-down { text-align: center; color: var(--muted); font-size: 1.2rem; }
 
         .analogy {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-left: 3px solid var(--accent);
-            border-radius: 0 12px 12px 0;
+            background: var(--accent-light);
+            border: 1px solid #bfdbfe;
+            border-radius: 16px;
             padding: 1.5rem;
             margin-top: 2rem;
         }
+        .analogy h4 { font-size: 0.85rem; color: var(--accent); margin-bottom: 0.5rem; font-weight: 700; }
+        .analogy p { font-size: 0.95rem; color: var(--text); }
 
-        .analogy h4 {
-            font-size: 0.85rem;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .analogy p {
-            font-size: 0.95rem;
-            color: var(--text);
-        }
-
-        /* Comparison */
         .comparison-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -303,44 +239,28 @@
         }
 
         .compare-card {
-            background: var(--surface);
+            background: white;
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 2rem;
             transition: all 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
-
-        .compare-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-
-        .compare-card .emoji {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .compare-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .compare-card p {
-            color: var(--muted);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
+        .compare-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .compare-card .emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+        .compare-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .compare-card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
 
         .compare-item {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.5rem 0;
+            padding: 0.4rem 0;
             font-size: 0.9rem;
         }
+        .compare-item .check { color: var(--green); font-weight: 700; }
+        .compare-item .cross { color: #dc2626; font-weight: 700; }
 
-        .compare-item .check { color: var(--green); }
-        .compare-item .cross { color: #ef4444; }
-
-        /* Examples */
         .examples-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -348,42 +268,33 @@
         }
 
         .example-card {
-            background: var(--surface);
+            background: white;
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 2rem;
             transition: all 0.3s;
-            cursor: default;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
-
-        .example-card:hover { border-color: var(--purple); }
+        .example-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
 
         .example-card .tag {
             display: inline-block;
             padding: 0.25rem 0.75rem;
             border-radius: 100px;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 1rem;
         }
-
-        .tag-blue { background: rgba(59, 130, 246, 0.1); color: var(--accent); }
-        .tag-green { background: rgba(34, 197, 94, 0.1); color: var(--green); }
-        .tag-purple { background: rgba(168, 85, 247, 0.1); color: var(--purple); }
-        .tag-orange { background: rgba(249, 115, 22, 0.1); color: var(--orange); }
-        .tag-pink { background: rgba(236, 72, 153, 0.1); color: var(--pink); }
+        .tag-blue { background: var(--accent-light); color: var(--accent); }
+        .tag-green { background: var(--green-light); color: var(--green); }
+        .tag-purple { background: var(--purple-light); color: var(--purple); }
+        .tag-orange { background: var(--orange-light); color: var(--orange); }
+        .tag-pink { background: var(--pink-light); color: var(--pink); }
 
         .example-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
         .example-card p { color: var(--muted); font-size: 0.9rem; }
 
-        /* Steps */
-        .steps {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            position: relative;
-        }
-
+        .steps { display: flex; flex-direction: column; gap: 2rem; position: relative; }
         .steps::before {
             content: '';
             position: absolute;
@@ -394,17 +305,13 @@
             background: var(--border);
         }
 
-        .step {
-            display: flex;
-            gap: 2rem;
-            position: relative;
-        }
-
+        .step { display: flex; gap: 2rem; position: relative; }
         .step-number {
             width: 48px;
             height: 48px;
             min-width: 48px;
             background: var(--accent);
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -416,25 +323,25 @@
         }
 
         .step-content {
-            background: var(--surface);
+            background: white;
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 1.5rem 2rem;
             flex: 1;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
-
         .step-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
         .step-content p { color: var(--muted); font-size: 0.95rem; }
 
-        /* Tools */
+        /* Tools Section */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
         }
 
         .tool-card {
-            background: var(--surface);
+            background: white;
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 1.5rem;
@@ -442,33 +349,87 @@
             align-items: center;
             gap: 1rem;
             transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
-
-        .tool-card:hover { border-color: var(--green); }
+        .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
 
         .tool-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--bg);
+            width: 52px;
+            height: 52px;
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            flex-shrink: 0;
         }
 
-        .tool-info h4 { font-size: 1rem; font-weight: 600; }
-        .tool-info p { font-size: 0.8rem; color: var(--muted); }
+        .tool-info h4 { font-size: 1rem; font-weight: 700; }
+        .tool-info p { font-size: 0.85rem; color: var(--muted); }
+        .tool-link {
+            margin-left: auto;
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
 
-        /* FAQ */
+        /* Resources */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: all 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .resource-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+
+        .resource-card .type {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+        .type-free { background: var(--green-light); color: var(--green); }
+        .type-paid { background: var(--orange-light); color: var(--orange); }
+        .type-video { background: var(--purple-light); color: var(--purple); }
+
+        .resource-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .resource-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .resource-link:hover { text-decoration: underline; }
+
         .faq-list { display: flex; flex-direction: column; gap: 1rem; }
 
         .faq-item {
-            background: var(--surface);
+            background: white;
             border: 1px solid var(--border);
             border-radius: 16px;
             overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
 
         .faq-question {
@@ -481,14 +442,8 @@
             font-size: 1.05rem;
             transition: background 0.2s;
         }
-
-        .faq-question:hover { background: rgba(255, 255, 255, 0.02); }
-
-        .faq-question .arrow {
-            transition: transform 0.3s;
-            color: var(--muted);
-        }
-
+        .faq-question:hover { background: var(--surface); }
+        .faq-question .arrow { transition: transform 0.3s; color: var(--muted); }
         .faq-item.open .faq-question .arrow { transform: rotate(180deg); }
 
         .faq-answer {
@@ -496,48 +451,38 @@
             overflow: hidden;
             transition: max-height 0.3s ease;
         }
-
         .faq-answer-inner {
             padding: 0 2rem 1.5rem;
             color: var(--muted);
             font-size: 0.95rem;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
-        /* CTA */
+        .tips-box {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #eff6ff, #ede9fe);
+            border: 1px solid #c7d2fe;
+            border-radius: 20px;
+        }
+        .tips-box h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .tip-item h4 { margin-bottom: 0.4rem; font-weight: 700; }
+        .tip-item p { color: var(--muted); font-size: 0.9rem; }
+
         .cta {
             text-align: center;
             padding: 8rem 2rem;
-            position: relative;
+            background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
         }
+        .cta h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; }
+        .cta p { font-size: 1.125rem; color: var(--muted); margin-bottom: 2rem; }
 
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .cta h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .cta p {
-            font-size: 1.125rem;
-            color: var(--muted);
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        /* Footer */
         footer {
             border-top: 1px solid var(--border);
             padding: 3rem 2rem;
@@ -546,7 +491,6 @@
             font-size: 0.85rem;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .explanation { grid-template-columns: 1fr; gap: 2rem; }
@@ -554,21 +498,11 @@
             .step { flex-direction: column; align-items: center; text-align: center; }
         }
 
-        /* Scroll animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-inner">
             <div class="logo">🤖 Belajar AI Agent</div>
@@ -577,35 +511,25 @@
                 <a href="#perbedaan">Perbedaan</a>
                 <a href="#contoh">Contoh</a>
                 <a href="#cara-kerja">Cara Kerja</a>
-                <a href="#mulai">Mulai Belajar</a>
+                <a href="#tools">Tools</a>
+                <a href="#resources">Belajar</a>
                 <a href="#faq">FAQ</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">
-                <span class="dot"></span>
-                Panduan untuk Pemula
-            </div>
-            <h1>
-                Apa Itu<br>
-                <span class="gradient">AI Agent?</span>
-            </h1>
-            <p>
-                Pelajari kecerdasan buatan dari nol. Tanpa coding, tanpa jargon teknis. 
-                Dipahami oleh siapa saja.
-            </p>
+            <div class="hero-badge">📘 Panduan untuk Pemula</div>
+            <h1>Apa Itu<br><span class="gradient">AI Agent?</span></h1>
+            <p>Pelajari kecerdasan buatan dari nol. Tanpa coding, tanpa jargon teknis. Langsung praktik!</p>
             <div class="hero-buttons">
                 <a href="#apa-itu" class="btn btn-primary">Mulai Belajar →</a>
-                <a href="#contoh" class="btn btn-secondary">Lihat Contoh</a>
+                <a href="#tools" class="btn btn-secondary">Coba Sekarang</a>
             </div>
         </div>
     </section>
 
-    <!-- What is AI Agent -->
     <section id="apa-itu">
         <div class="explanation">
             <div class="explanation-visual">
@@ -638,38 +562,20 @@
             <div class="explanation-text">
                 <div class="section-label">Pengertian</div>
                 <h3>AI Agent itu apa sih?</h3>
-                <p>
-                    <strong>AI Agent</strong> adalah program komputer yang bisa <strong>berpikir sendiri</strong>, 
-                    <strong>mengambil keputusan</strong>, dan <strong>melakukan tugas</strong> tanpa disuruh terus-terusan.
-                </p>
-                <p>
-                    Bayangkan punya asisten pribadi yang:
-                </p>
-                <ul style="color: var(--muted); padding-left: 1.5rem; margin-bottom: 1.5rem;">
-                    <li>Tidak pernah tidur</li>
-                    <li>Bisa baca ribuan dokumen dalam detik</li>
-                    <li>Bisa kerjakan banyak hal sekaligus</li>
-                    <li>Belajar dari pengalaman</li>
-                </ul>
+                <p><strong>AI Agent</strong> adalah program komputer yang bisa <strong>berpikir sendiri</strong>, <strong>mengambil keputusan</strong>, dan <strong>melakukan tugas</strong> tanpa disuruh terus-terusan.</p>
+                <p>Bayangkan punya asisten pribadi yang tidak pernah tidur, bisa baca ribuan dokumen dalam detik, dan bisa kerjakan banyak hal sekaligus.</p>
                 <div class="analogy">
                     <h4>💡 Analogi Sederhana</h4>
-                    <p>
-                        Kalau <strong>Google</strong> itu seperti perpustakaan (cari informasi), 
-                        maka <strong>AI Agent</strong> itu seperti <strong>asisten pribadi</strong> yang 
-                        bukan cuma cari info, tapi juga langsung <strong>kerjakan</strong> untuk Anda.
-                    </p>
+                    <p>Kalau <strong>Google</strong> itu seperti perpustakaan (cari informasi), maka <strong>AI Agent</strong> itu seperti <strong>asisten pribadi</strong> yang bukan cuma cari info, tapi juga langsung <strong>kerjakan</strong> untuk Anda.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Difference -->
     <section id="perbedaan">
         <div class="section-label">Perbedaan</div>
         <h2 class="section-title">AI Biasa vs AI Agent</h2>
-        <p class="section-desc">
-            Banyak orang bingung bedanya. Ini penjelasan sederhananya:
-        </p>
+        <p class="section-desc">Banyak orang bingung bedanya. Ini penjelasan sederhananya:</p>
         <div class="comparison-grid">
             <div class="compare-card">
                 <div class="emoji">💬</div>
@@ -679,12 +585,9 @@
                 <div class="compare-item"><span class="cross">✗</span> Tidak bisa aksi nyata</div>
                 <div class="compare-item"><span class="cross">✗</span> Lupa percakapan lama</div>
                 <div class="compare-item"><span class="cross">✗</span> Menunggu perintah</div>
-                <div style="margin-top: 1rem; padding: 1rem; background: var(--bg); border-radius: 12px;">
-                    <p style="font-size: 0.85rem; color: var(--muted);">Contoh: ChatGPT mode biasa</p>
-                </div>
+                <div style="margin-top:1rem;padding:1rem;background:var(--surface);border-radius:12px;font-size:0.85rem;color:var(--muted);">Contoh: ChatGPT mode biasa</div>
             </div>
-
-            <div class="compare-card" style="border-color: var(--accent);">
+            <div class="compare-card" style="border-color:var(--accent);box-shadow:0 4px 16px rgba(37,99,235,0.1);">
                 <div class="emoji">🤖</div>
                 <h3>AI Agent</h3>
                 <p>Bisa ngobrol SEKALIGUS kerjakan tugas.</p>
@@ -692,11 +595,8 @@
                 <div class="compare-item"><span class="check">✓</span> Browsing, coding, kirim email</div>
                 <div class="compare-item"><span class="check">✓</span> Ingat konteks & belajar</div>
                 <div class="compare-item"><span class="check">✓</span> Bisa kerja otomatis</div>
-                <div style="margin-top: 1rem; padding: 1rem; background: var(--bg); border-radius: 12px;">
-                    <p style="font-size: 0.85rem; color: var(--accent);">Contoh: Hermes, AutoGPT, Claude</p>
-                </div>
+                <div style="margin-top:1rem;padding:1rem;background:var(--accent-light);border-radius:12px;font-size:0.85rem;color:var(--accent);font-weight:600;">Contoh: Hermes, AutoGPT, Claude</div>
             </div>
-
             <div class="compare-card">
                 <div class="emoji">⚙️</div>
                 <h3>Script/Program Biasa</h3>
@@ -705,167 +605,192 @@
                 <div class="compare-item"><span class="cross">✗</span> Tidak bisa adaptasi</div>
                 <div class="compare-item"><span class="cross">✗</span> Harus dikode manual</div>
                 <div class="compare-item"><span class="cross">✗</span> Tidak bisa bahasa manusia</div>
-                <div style="margin-top: 1rem; padding: 1rem; background: var(--bg); border-radius: 12px;">
-                    <p style="font-size: 0.85rem; color: var(--muted);">Contoh: Bot Telegram biasa</p>
-                </div>
+                <div style="margin-top:1rem;padding:1rem;background:var(--surface);border-radius:12px;font-size:0.85rem;color:var(--muted);">Contoh: Bot Telegram biasa</div>
             </div>
         </div>
     </section>
 
-    <!-- Real Examples -->
     <section id="contoh">
         <div class="section-label">Contoh Nyata</div>
         <h2 class="section-title">AI Agent dalam Kehidupan Sehari-hari</h2>
-        <p class="section-desc">
-            Anda mungkin sudah berinteraksi dengan AI Agent tanpa sadar!
-        </p>
+        <p class="section-desc">Anda mungkin sudah berinteraksi dengan AI Agent tanpa sadar!</p>
         <div class="examples-grid">
-            <div class="example-card">
-                <span class="tag tag-blue">Coding</span>
-                <h3>💻 Asisten Programmer</h3>
-                <p>AI yang bisa menulis kode, debug error, dan bikin aplikasi lengkap dari deskripsi saja.</p>
-            </div>
-            <div class="example-card">
-                <span class="tag tag-green">Bisnis</span>
-                <h3>📊 Analis Data</h3>
-                <p>Baca ribuan baris data Excel, bikin grafik, kasih insight — dalam hitungan detik.</p>
-            </div>
-            <div class="example-card">
-                <span class="tag tag-purple">Kreatif</span>
-                <h3>🎨 Desainer & Penulis</h3>
-                <p>Buat desain, tulis artikel, bikin konten sosmed — tinggal kasih brief.</p>
-            </div>
-            <div class="example-card">
-                <span class="tag tag-orange">Otomasi</span>
-                <h3>⏰ Asisten Otomatis</h3>
-                <p>Monitor harga, kirim notifikasi, update database — jalan 24/7 tanpa istirahat.</p>
-            </div>
-            <div class="example-card">
-                <span class="tag tag-pink">Riset</span>
-                <h3>🔬 Peneliti</h3>
-                <p>Cari jurnal, rangkum paper, bandingkan data dari ratusan sumber sekaligus.</p>
-            </div>
-            <div class="example-card">
-                <span class="tag tag-blue">Pribadi</span>
-                <h3>📱 Asisten Harian</h3>
-                <p>Atur jadwal, balas email, booking tempat — semua lewat satu perintah chat.</p>
-            </div>
+            <div class="example-card"><span class="tag tag-blue">Coding</span><h3>💻 Asisten Programmer</h3><p>AI yang bisa menulis kode, debug error, dan bikin aplikasi lengkap dari deskripsi saja.</p></div>
+            <div class="example-card"><span class="tag tag-green">Bisnis</span><h3>📊 Analis Data</h3><p>Baca ribuan baris data Excel, bikin grafik, kasih insight — dalam hitungan detik.</p></div>
+            <div class="example-card"><span class="tag tag-purple">Kreatif</span><h3>🎨 Desainer & Penulis</h3><p>Buat desain, tulis artikel, bikin konten sosmed — tinggal kasih brief.</p></div>
+            <div class="example-card"><span class="tag tag-orange">Otomasi</span><h3>⏰ Asisten Otomatis</h3><p>Monitor harga, kirim notifikasi, update database — jalan 24/7 tanpa istirahat.</p></div>
+            <div class="example-card"><span class="tag tag-pink">Riset</span><h3>🔬 Peneliti</h3><p>Cari jurnal, rangkum paper, bandingkan data dari ratusan sumber sekaligus.</p></div>
+            <div class="example-card"><span class="tag tag-blue">Pribadi</span><h3>📱 Asisten Harian</h3><p>Atur jadwal, balas email, booking tempat — semua lewat satu perintah chat.</p></div>
         </div>
     </section>
 
-    <!-- How it Works -->
     <section id="cara-kerja">
         <div class="section-label">Cara Kerja</div>
         <h2 class="section-title">Bagaimana AI Agent Bekerja?</h2>
-        <p class="section-desc">
-            Prosesnya sederhana — seperti cara Anda menyelesaikan masalah.
-        </p>
+        <p class="section-desc">Prosesnya sederhana — seperti cara Anda menyelesaikan masalah.</p>
         <div class="steps">
-            <div class="step fade-in">
-                <div class="step-number">1</div>
-                <div class="step-content">
-                    <h3>🎯 Terima Perintah</h3>
-                    <p>Anda kasih tugas dalam bahasa sehari-hari. Contoh: "Tolong cari tiket pesawat Jakarta-Bali yang paling murah minggu depan."</p>
-                </div>
-            </div>
-            <div class="step fade-in">
-                <div class="step-number">2</div>
-                <div class="step-content">
-                    <h3>🧠 Pikirkan Rencana</h3>
-                    <p>AI memecah tugas jadi langkah-langkah kecil: buka website travel → masukkan tanggal → bandingkan harga → pilih termurah.</p>
-                </div>
-            </div>
-            <div class="step fade-in">
-                <div class="step-number">3</div>
-                <div class="step-content">
-                    <h3>⚡ Eksekusi</h3>
-                    <p>AI benar-benar browsing website, mengisi form, dan mencari informasi — persis seperti Anda melakukannya sendiri.</p>
-                </div>
-            </div>
-            <div class="step fade-in">
-                <div class="step-number">4</div>
-                <div class="step-content">
-                    <h3>📊 Evaluasi & Koreksi</h3>
-                    <p>Kalau hasilnya kurang pas, AI akan coba cara lain. Seperti manusia yang belajar dari kesalahan.</p>
-                </div>
-            </div>
-            <div class="step fade-in">
-                <div class="step-number">5</div>
-                <div class="step-content">
-                    <h3>✅ Berikan Hasil</h3>
-                    <p>AI memberikan hasil lengkap: "Tiket paling murah Rp 850.000 dengan Lion Air, berangkat Selasa 07:00. Mau saya booking?"</p>
-                </div>
-            </div>
+            <div class="step fade-in"><div class="step-number">1</div><div class="step-content"><h3>🎯 Terima Perintah</h3><p>Anda kasih tugas dalam bahasa sehari-hari. Contoh: "Tolong cari tiket pesawat Jakarta-Bali yang paling murah minggu depan."</p></div></div>
+            <div class="step fade-in"><div class="step-number">2</div><div class="step-content"><h3>🧠 Pikirkan Rencana</h3><p>AI memecah tugas jadi langkah-langkah kecil: buka website travel → masukkan tanggal → bandingkan harga → pilih termurah.</p></div></div>
+            <div class="step fade-in"><div class="step-number">3</div><div class="step-content"><h3>⚡ Eksekusi</h3><p>AI benar-benar browsing website, mengisi form, dan mencari informasi — persis seperti Anda melakukannya sendiri.</p></div></div>
+            <div class="step fade-in"><div class="step-number">4</div><div class="step-content"><h3>📊 Evaluasi & Koreksi</h3><p>Kalau hasilnya kurang pas, AI akan coba cara lain. Seperti manusia yang belajar dari kesalahan.</p></div></div>
+            <div class="step fade-in"><div class="step-number">5</div><div class="step-content"><h3>✅ Berikan Hasil</h3><p>AI memberikan hasil lengkap: "Tiket paling murah Rp 850.000 dengan Lion Air, berangkat Selasa 07:00. Mau saya booking?"</p></div></div>
         </div>
     </section>
 
-    <!-- Tools to Try -->
-    <section id="mulai">
-        <div class="section-label">Mulai Belajar</div>
-        <h2 class="section-title">Coba AI Agent Sekarang (Gratis!)</h2>
-        <p class="section-desc">
-            Anda tidak perlu jadi programmer. Cukup buka website-nya dan mulai ngobrol.
-        </p>
+    <!-- Tools -->
+    <section id="tools">
+        <div class="section-label">Coba Sekarang</div>
+        <h2 class="section-title">Tools AI Agent (Gratis!)</h2>
+        <p class="section-desc">Anda tidak perlu jadi programmer. Cukup buka website-nya dan mulai ngobrol.</p>
         <div class="tools-grid">
-            <div class="tool-card">
+            <a href="https://chat.openai.com" target="_blank" class="tool-card">
                 <div class="tool-icon">🟢</div>
-                <div class="tool-info">
-                    <h4>ChatGPT</h4>
-                    <p>OpenAI — Paling populer, bisa browsing & coding</p>
-                </div>
-            </div>
-            <div class="tool-card">
+                <div class="tool-info"><h4>ChatGPT</h4><p>OpenAI — Paling populer, bisa browsing & coding</p></div>
+                <span class="tool-link">Buka →</span>
+            </a>
+            <a href="https://claude.ai" target="_blank" class="tool-card">
                 <div class="tool-icon">🟠</div>
-                <div class="tool-info">
-                    <h4>Claude</h4>
-                    <p>Anthropic — Pintar analisis dokumen panjang</p>
-                </div>
-            </div>
-            <div class="tool-card">
+                <div class="tool-info"><h4>Claude</h4><p>Anthropic — Pintar analisis dokumen panjang</p></div>
+                <span class="tool-link">Buka →</span>
+            </a>
+            <a href="https://gemini.google.com" target="_blank" class="tool-card">
                 <div class="tool-icon">🔵</div>
-                <div class="tool-info">
-                    <h4>Gemini</h4>
-                    <p>Google — Terintegrasi dengan Google ecosystem</p>
-                </div>
-            </div>
-            <div class="tool-card">
+                <div class="tool-info"><h4>Gemini</h4><p>Google — Terintegrasi dengan Google ecosystem</p></div>
+                <span class="tool-link">Buka →</span>
+            </a>
+            <a href="https://www.perplexity.ai" target="_blank" class="tool-card">
                 <div class="tool-icon">🟣</div>
-                <div class="tool-info">
-                    <h4>Perplexity</h4>
-                    <p>AI + Search — Riset dengan sumber jelas</p>
-                </div>
-            </div>
-            <div class="tool-card">
+                <div class="tool-info"><h4>Perplexity</h4><p>AI + Search — Riset dengan sumber jelas</p></div>
+                <span class="tool-link">Buka →</span>
+            </a>
+            <a href="https://cursor.sh" target="_blank" class="tool-card">
                 <div class="tool-icon">⚡</div>
-                <div class="tool-info">
-                    <h4>Hermes Agent</h4>
-                    <p>AI Agent all-in-one — coding, otomasi, Telegram</p>
-                </div>
-            </div>
-            <div class="tool-card">
+                <div class="tool-info"><h4>Cursor</h4><p>AI Coding — Bikin aplikasi tanpa jago programming</p></div>
+                <span class="tool-link">Buka →</span>
+            </a>
+            <a href="https://replit.com" target="_blank" class="tool-card">
                 <div class="tool-icon">🔧</div>
-                <div class="tool-info">
-                    <h4>Cursor / Windsurf</h4>
-                    <p>AI untuk coding — bikin app tanpa jago programming</p>
-                </div>
+                <div class="tool-info"><h4>Replit</h4><p>Code + Deploy — Bikin app langsung di browser</p></div>
+                <span class="tool-link">Buka →</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources">
+        <div class="section-label">Sumber Belajar</div>
+        <h2 class="section-title">Belajar AI Agent dari Nol</h2>
+        <p class="section-desc">Kumpulan resource terbaik untuk belajar — dari video, kursus, hingga dokumentasi.</p>
+
+        <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:1.5rem;">🎥 Video YouTube (Bahasa Indonesia)</h3>
+        <div class="resource-grid" style="margin-bottom:3rem;">
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>Apa itu AI Agent? Penjelasan Sederhana</h3>
+                <p>Video pendek yang menjelaskan konsep AI Agent dengan bahasa sehari-hari dan contoh nyata.</p>
+                <a href="https://www.youtube.com/results?search_query=apa+itu+ai+agent+penjelasan+sederhana" target="_blank" class="resource-link">Cari di YouTube →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>Tutorial ChatGPT untuk Pemula</h3>
+                <p>Panduan lengkap cara pakai ChatGPT dari nol — dari daftar sampai bikin prompt yang efektif.</p>
+                <a href="https://www.youtube.com/results?search_query=tutorial+chatgpt+untuk+pemula+indonesia" target="_blank" class="resource-link">Cari di YouTube →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>Cara Bikin Bot Telegram dengan AI</h3>
+                <p>Step-by-step bikin bot Telegram yang pakai AI untuk menjawab pertanyaan secara otomatis.</p>
+                <a href="https://www.youtube.com/results?search_query=cara+bikin+bot+telegram+ai+agent" target="_blank" class="resource-link">Cari di YouTube →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>AI Agent untuk Bisnis & Marketing</h3>
+                <p>Contoh nyata penggunaan AI Agent di dunia bisnis — dari customer service sampai analisis data.</p>
+                <a href="https://www.youtube.com/results?search_query=ai+agent+bisnis+marketing+indonesia" target="_blank" class="resource-link">Cari di YouTube →</a>
             </div>
         </div>
 
-        <div style="margin-top: 3rem; padding: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 20px;">
-            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">💡 Tips Memulai</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                <div>
-                    <h4 style="color: var(--accent); margin-bottom: 0.5rem;">1. Mulai dari yang sederhana</h4>
-                    <p style="color: var(--muted); font-size: 0.9rem;">Tanya hal-hal dasar dulu. Jangan langsung minta AI bikin aplikasi.</p>
-                </div>
-                <div>
-                    <h4 style="color: var(--green); margin-bottom: 0.5rem;">2. Jelaskan dengan detail</h4>
-                    <p style="color: var(--muted); font-size: 0.9rem;">Semakin jelas permintaan Anda, semakin bagus hasilnya.</p>
-                </div>
-                <div>
-                    <h4 style="color: var(--purple); margin-bottom: 0.5rem;">3. Jangan takut eksperimen</h4>
-                    <p style="color: var(--muted); font-size: 0.9rem;">Coba berbagai hal. AI tidak akan marah kalau Anda tanya banyak.</p>
-                </div>
+        <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:1.5rem;">📚 Kursus Online</h3>
+        <div class="resource-grid" style="margin-bottom:3rem;">
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>Google AI Essentials</h3>
+                <p>Kursus gratis dari Google tentang dasar-dasar AI. Cocok untuk pemula total.</p>
+                <a href="https://www.coursera.org/learn/google-ai-essentials" target="_blank" class="resource-link">Daftar Gratis →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>Elements of AI</h3>
+                <p>Kursus interaktif dari University of Helsinki. Gratis, tanpa coding, dapat sertifikat.</p>
+                <a href="https://www.elementsofai.com/" target="_blank" class="resource-link">Daftar Gratis →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>DeepLearning.AI Short Courses</h3>
+                <p>Kursus singkat dari Andrew Ng tentang AI Agent, Prompt Engineering, dan LLM.</p>
+                <a href="https://www.deeplearning.ai/short-courses/" target="_blank" class="resource-link">Daftar Gratis →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-paid">BERBAYAR</span>
+                <h3>Udemy - AI Agent Complete Guide</h3>
+                <p>Kursus lengkap dari dasar sampai bikin AI Agent sendiri. Sering diskon Rp 100rb.</p>
+                <a href="https://www.udemy.com/course/ai-agent/" target="_blank" class="resource-link">Lihat di Udemy →</a>
+            </div>
+        </div>
+
+        <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:1.5rem;">📖 Dokumentasi & Artikel</h3>
+        <div class="resource-grid" style="margin-bottom:3rem;">
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>OpenAI Prompt Engineering Guide</h3>
+                <p>Panduan resmi cara menulis prompt yang efektif. Wajib baca untuk semua pengguna AI.</p>
+                <a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" class="resource-link">Baca →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>Anthropic Claude Documentation</h3>
+                <p>Dokumentasi lengkap tentang Claude — cara pakai, tips, dan best practices.</p>
+                <a href="https://docs.anthropic.com/claude" target="_blank" class="resource-link">Baca →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>LangChain Documentation</h3>
+                <p>Framework populer untuk bikin AI Agent sendiri. Cocok kalau mau mulai coding.</p>
+                <a href="https://python.langchain.com/docs/get_started/introduction" target="_blank" class="resource-link">Baca →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>AutoGPT / AgentGPT</h3>
+                <p>AI Agent open-source yang bisa bikin rencana dan eksekusi sendiri. Coba langsung di browser.</p>
+                <a href="https://agentgpt.reworkd.ai/" target="_blank" class="resource-link">Coba AgentGPT →</a>
+            </div>
+        </div>
+
+        <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:1.5rem;">🛠️ Template & Starter</h3>
+        <div class="resource-grid">
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>ChatGPT Prompt Templates</h3>
+                <p>Kumpulan template prompt siap pakai untuk berbagai kebutuhan — kerja, belajar, bisnis.</p>
+                <a href="https://github.com/f/awesome-chatgpt-prompts" target="_blank" class="resource-link">Lihat di GitHub →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>Dify.AI — Build AI Agent No-Code</h3>
+                <p>Platform no-code untuk bikin AI Agent sendiri tanpa programming. Drag & drop!</p>
+                <a href="https://dify.ai/" target="_blank" class="resource-link">Coba Dify →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>Flowise — AI Agent Builder</h3>
+                <p>Bikin chatbot & AI Agent dengan visual flow editor. Open-source dan gratis.</p>
+                <a href="https://flowiseai.com/" target="_blank" class="resource-link">Coba Flowise →</a>
+            </div>
+            <div class="resource-card">
+                <span class="type type-free">GRATIS</span>
+                <h3>n8n — Workflow Automation + AI</h3>
+                <p>Otomasi workflow dengan AI. Connect WhatsApp, Telegram, Email, dan 400+ app lainnya.</p>
+                <a href="https://n8n.io/" target="_blank" class="resource-link">Coba n8n →</a>
             </div>
         </div>
     </section>
@@ -874,24 +799,35 @@
     <section>
         <div class="section-label">Masa Depan</div>
         <h2 class="section-title">Kenapa Harus Belajar Sekarang?</h2>
-        <p class="section-desc">
-            AI Agent bukan tren sesaat. Ini adalah masa depan cara manusia bekerja.
-        </p>
+        <p class="section-desc">AI Agent bukan tren sesaat. Ini adalah masa depan cara manusia bekerja.</p>
         <div class="comparison-grid">
-            <div class="compare-card">
-                <div class="emoji">📈</div>
-                <h3>2025-2027</h3>
-                <p>AI Agent mulai dipakai di banyak perusahaan. Yang bisa pakai AI punya keunggulan.</p>
-            </div>
-            <div class="compare-card">
-                <div class="emoji">🔥</div>
-                <h3>2028-2030</h3>
-                <p>40-60% pekerjaan rutin di-automate. AI jadi "co-pilot" di semua industri.</p>
-            </div>
-            <div class="compare-card">
-                <div class="emoji">🤖</div>
-                <h3>2031+</h3>
-                <p>AI Agent dominan di hampir semua sektor. Manusia fokus ke strategi & kreativitas.</p>
+            <div class="compare-card"><div class="emoji">📈</div><h3>2025-2027</h3><p>AI Agent mulai dipakai di banyak perusahaan. Yang bisa pakai AI punya keunggulan.</p></div>
+            <div class="compare-card"><div class="emoji">🔥</div><h3>2028-2030</h3><p>40-60% pekerjaan rutin di-automate. AI jadi "co-pilot" di semua industri.</p></div>
+            <div class="compare-card"><div class="emoji">🤖</div><h3>2031+</h3><p>AI Agent dominan di hampir semua sektor. Manusia fokus ke strategi & kreativitas.</p></div>
+        </div>
+    </section>
+
+    <!-- Tips -->
+    <section>
+        <div class="tips-box">
+            <h3>💡 Tips Memulai</h3>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <h4 style="color:var(--accent);">1. Mulai dari yang sederhana</h4>
+                    <p>Tanya hal-hal dasar dulu. Jangan langsung minta AI bikin aplikasi.</p>
+                </div>
+                <div class="tip-item">
+                    <h4 style="color:var(--green);">2. Jelaskan dengan detail</h4>
+                    <p>Semakin jelas permintaan Anda, semakin bagus hasilnya.</p>
+                </div>
+                <div class="tip-item">
+                    <h4 style="color:var(--purple);">3. Jangan takut eksperimen</h4>
+                    <p>Coba berbagai hal. AI tidak akan marah kalau Anda tanya banyak.</p>
+                </div>
+                <div class="tip-item">
+                    <h4 style="color:var(--orange);">4. Pakai di kehidupan nyata</h4>
+                    <p>Langsung praktik: tulis email, analisis data, cari informasi.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -900,73 +836,31 @@
     <section id="faq">
         <div class="section-label">FAQ</div>
         <h2 class="section-title">Pertanyaan yang Sering Ditanyakan</h2>
-        <p class="section-desc">
-            Masih bingung? Cek pertanyaan umum di bawah ini.
-        </p>
+        <p class="section-desc">Masih bingung? Cek pertanyaan umum di bawah ini.</p>
         <div class="faq-list">
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    Apakah AI Agent akan menggantikan pekerjaan manusia?
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Sebagian ya, tapi juga menciptakan pekerjaan baru. Yang pasti, AI akan mengubah cara kerja. Pekerjaan yang repetitif (input data, customer service dasar) paling terdampak. Tapi pekerjaan yang butuh kreativitas, empati, dan keputusan kompleks masih butuh manusia. Kuncinya: belajar pakai AI, bukan bersaing dengan AI.
-                    </div>
-                </div>
+                <div class="faq-question" onclick="toggleFaq(this)">Apakah AI Agent akan menggantikan pekerjaan manusia?<span class="arrow">▼</span></div>
+                <div class="faq-answer"><div class="faq-answer-inner">Sebagian ya, tapi juga menciptakan pekerjaan baru. Pekerjaan repetitif (input data, customer service) paling terdampak. Tapi pekerjaan yang butuh kreativitas, empati, dan keputusan kompleks masih butuh manusia. Kuncinya: belajar pakai AI, bukan bersaing dengan AI.</div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    Apakah saya perlu bisa coding untuk pakai AI Agent?
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Tidak! Kebanyakan AI Agent sekarang bisa dipakai lewat chat biasa. Anda cukup ketik dalam bahasa Indonesia apa yang Anda mau, dan AI akan mengerjakannya. Tentu, kalau bisa coding, Anda bisa lebih banyak hal — tapi itu opsional, bukan wajib.
-                    </div>
-                </div>
+                <div class="faq-question" onclick="toggleFaq(this)">Apakah saya perlu bisa coding untuk pakai AI Agent?<span class="arrow">▼</span></div>
+                <div class="faq-answer"><div class="faq-answer-inner">Tidak! Kebanyakan AI Agent sekarang bisa dipakai lewat chat biasa. Anda cukup ketik dalam bahasa Indonesia apa yang Anda mau, dan AI akan mengerjakannya. Kalau bisa coding, Anda bisa lebih banyak hal — tapi itu opsional.</div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    Berapa biaya pakai AI Agent?
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Banyak yang gratis! ChatGPT, Claude, dan Gemini punya versi gratis. Versi berbayar ($20/bulan) biasanya lebih pintar dan bisa aksi lebih banyak. Untuk pemula, versi gratis sudah lebih dari cukup untuk belajar.
-                    </div>
-                </div>
+                <div class="faq-question" onclick="toggleFaq(this)">Berapa biaya pakai AI Agent?<span class="arrow">▼</span></div>
+                <div class="faq-answer"><div class="faq-answer-inner">Banyak yang gratis! ChatGPT, Claude, dan Gemini punya versi gratis. Versi berbayar ($20/bulan) biasanya lebih pintar. Untuk pemula, versi gratis sudah lebih dari cukup untuk belajar.</div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    Apakah data saya aman di AI Agent?
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Tergantung platform-nya. ChatGPT, Claude, dan Gemini dari perusahaan besar dengan standar keamanan tinggi. Tapi tetap: jangan masukkan data sensitif (password, nomor kartu kredit, data pribadi rahasia) ke AI. Anggap seperti ngobrol dengan orang asing — share yang perlu saja.
-                    </div>
-                </div>
+                <div class="faq-question" onclick="toggleFaq(this)">Apakah data saya aman di AI Agent?<span class="arrow">▼</span></div>
+                <div class="faq-answer"><div class="faq-answer-inner">Tergantung platform-nya. ChatGPT, Claude, dan Gemini dari perusahaan besar dengan standar keamanan tinggi. Tapi tetap: jangan masukkan data sensitif (password, nomor kartu kredit) ke AI.</div></div>
             </div>
             <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    Bagaimana cara belajar AI Agent dari nol?
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        <strong>Langkah 1:</strong> Buka chat.openai.com dan coba ngobrol. Tanya apa saja.<br>
-                        <strong>Langkah 2:</strong> Coba minta AI bantu tugas nyata (tulis email, analisis data, cari informasi).<br>
-                        <strong>Langkah 3:</strong> Pelajari "prompt engineering" — cara kasih perintah yang efektif.<br>
-                        <strong>Langkah 4:</strong> Coba tool lain (Claude, Perplexity, Cursor) untuk lihat perbedaannya.<br>
-                        <strong>Langkah 5:</strong> Terus eksperimen dan ikuti komunitas AI Indonesia.
-                    </div>
-                </div>
+                <div class="faq-question" onclick="toggleFaq(this)">Bagaimana cara belajar AI Agent dari nol?<span class="arrow">▼</span></div>
+                <div class="faq-answer"><div class="faq-answer-inner"><strong>1.</strong> Buka chat.openai.com dan coba ngobrol.<br><strong>2.</strong> Minta AI bantu tugas nyata (tulis email, analisis data).<br><strong>3.</strong> Pelajari "prompt engineering" — cara kasih perintah yang efektif.<br><strong>4.</strong> Coba tool lain (Claude, Perplexity, Cursor).<br><strong>5.</strong> Terus eksperimen dan ikuti komunitas AI Indonesia.</div></div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta">
         <h2>Siap Mulai Belajar?</h2>
         <p>Masa depan sudah di depan mata. Jangan sampai ketinggalan.</p>
@@ -976,53 +870,22 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>Belajar AI Agent — Panduan untuk Orang Awam</p>
-        <p style="margin-top: 0.5rem; font-size: 0.8rem;">Dibuat dengan ❤️ untuk Indonesia • 2025</p>
+        <p style="margin-top:0.5rem;font-size:0.8rem;">Dibuat dengan ❤️ untuk Indonesia • 2025</p>
     </footer>
 
     <script>
-        // FAQ Toggle
-        function toggleFaq(element) {
-            const item = element.parentElement;
+        function toggleFaq(el) {
+            const item = el.parentElement;
             const answer = item.querySelector('.faq-answer');
             const isOpen = item.classList.contains('open');
-            
-            // Close all
-            document.querySelectorAll('.faq-item').forEach(i => {
-                i.classList.remove('open');
-                i.querySelector('.faq-answer').style.maxHeight = '0';
-            });
-            
-            // Open clicked (if was closed)
-            if (!isOpen) {
-                item.classList.add('open');
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-            }
+            document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-answer').style.maxHeight = '0'; });
+            if (!isOpen) { item.classList.add('open'); answer.style.maxHeight = answer.scrollHeight + 'px'; }
         }
-
-        // Scroll animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
+        const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+        document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', function(e) { e.preventDefault(); const t = document.querySelector(this.getAttribute('href')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
     </script>
 </body>
 </html>
