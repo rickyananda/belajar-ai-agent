@@ -72,6 +72,16 @@
             transition: color 0.2s;
         }
         .nav-links a:hover { color: var(--blue-600); }
+        .nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:0.5rem; }
+        .nav-toggle span { display:block; width:22px; height:2px; background:var(--slate-700); margin:5px 0; border-radius:2px; transition:all 0.3s; }
+        .nav-toggle.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+        .nav-toggle.open span:nth-child(2) { opacity:0; }
+        .nav-toggle.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+        .nav-mobile { display:none; position:absolute; top:64px; left:0; right:0; background:#fff; border-bottom:1px solid var(--slate-200); padding:1rem 2rem; box-shadow:var(--shadow-lg); }
+        .nav-mobile.open { display:block; }
+        .nav-mobile a { display:block; padding:0.75rem 0; color:var(--slate-600); text-decoration:none; font-weight:600; font-size:0.95rem; border-bottom:1px solid var(--slate-100); }
+        .nav-mobile a:last-child { border-bottom:none; }
+        .nav-mobile a:hover { color:var(--blue-600); }
 
         /* ===== HERO ===== */
         .hero {
@@ -336,6 +346,7 @@
 
         @media (max-width:768px) {
             .nav-links { display:none; }
+            .nav-toggle { display:block; }
             .explain-grid { grid-template-columns:1fr; gap:2rem; }
             .step { flex-direction:column; align-items:center; text-align:center; }
         }
@@ -355,6 +366,19 @@
             <a href="#belajar">Belajar</a>
             <a href="#faq">FAQ</a>
         </div>
+        <button class="nav-toggle" onclick="toggleNav(this)" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="nav-mobile">
+        <a href="#apa" onclick="closeNav()">Apa Itu?</a>
+        <a href="#beda" onclick="closeNav()">Perbedaan</a>
+        <a href="#contoh" onclick="closeNav()">Contoh</a>
+        <a href="#tools" onclick="closeNav()">Tools</a>
+        <a href="#mulai" onclick="closeNav()">Panduan</a>
+        <a href="#belajar" onclick="closeNav()">Belajar</a>
+        <a href="#faq" onclick="closeNav()">FAQ</a>
+    </div>
     </div>
 </nav>
 
@@ -742,6 +766,8 @@
 
 <script>
 function faq(el){const i=el.parentElement,a=i.querySelector('.faq-a'),o=i.classList.contains('open');document.querySelectorAll('.faq-item').forEach(x=>{x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight='0'});if(!o){i.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}}
+function toggleNav(btn){btn.classList.toggle('open');document.querySelector('.nav-mobile').classList.toggle('open')}
+function closeNav(){document.querySelector('.nav-toggle').classList.remove('open');document.querySelector('.nav-mobile').classList.remove('open')}
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('show')})},{threshold:.15});
 document.querySelectorAll('.up').forEach(el=>obs.observe(el));
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
